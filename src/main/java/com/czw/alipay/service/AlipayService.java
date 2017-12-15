@@ -1,5 +1,6 @@
 package com.czw.alipay.service;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
@@ -22,11 +23,17 @@ import com.czw.common.tools.Tools;
 @PropertySource(value = {"classpath:/common.properties"},encoding="utf-8")  
 public class AlipayService {
 	
+	private static Logger logger = Logger.getLogger(AlipayService.class);
+	
+	@Value("${com.alipay.app.publickey}")  
+	private String alipayAppPublicKey; //应用公钥
+	
 	@Value("${com.alipay.publickey}")  
-	private String alipayPublicKey; //公钥
+	private String alipayPublicKey; //应用公钥
 	 
-	@Value("${com.alipay.privatekey}")  
-	private String alipayPrivateKey;  //私钥
+	 
+	@Value("${com.alipay.app.privatekey}")  
+	private String alipayAppPrivateKey;  //应用私钥
 	
 	@Value("${com.alipay.pay.url}")  
 	private String alipayUrl;  //阿里网关
@@ -44,7 +51,7 @@ public class AlipayService {
 	private static String CHARSET="utf-8";
 
 	public String payJump(AlipayTradeWapPayModel alipayTradeWapPayModel,ClientType clientType){
-		AlipayClient alipayClient = new DefaultAlipayClient(alipayUrl, alipayAppid, alipayPrivateKey, "json", CHARSET, alipayPublicKey, "RSA2"); //获得初始化的AlipayClient
+		AlipayClient alipayClient = new DefaultAlipayClient(alipayUrl, alipayAppid, alipayAppPrivateKey, "json", CHARSET, alipayPublicKey, "RSA2"); //获得初始化的AlipayClient
 		String form="";
 		if(clientType == ClientType.WAP){
 			AlipayTradeWapPayRequest alipayRequest = new AlipayTradeWapPayRequest();//创建API对应的request
@@ -71,7 +78,6 @@ public class AlipayService {
 		        "    \"product_code\":\"FAST_INSTANT_TRADE_PAY\"," + //固定值
 		        "    \"total_amount\":\""+alipayTradeWapPayModel.getTotalAmount()+"\"," +
 		        "    \"subject\":\""+alipayTradeWapPayModel.getSubject()+"\"," +
-		        "    \"body\":\""+alipayTradeWapPayModel.getBody()+"\"," +
 		        "    \"passback_params\":\""+Tools.encodePar("clientType="+ClientType.PC.ordinal())+"\"" +
 		        "    }"+
 		        "  }");//填充业务参数

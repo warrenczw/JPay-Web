@@ -16,6 +16,7 @@ import com.czw.common.entity.BaseEntity;
 import com.czw.pay.type.PayStatusType;
 import com.czw.pay.type.PaymentChannelType;
 import com.czw.pay.type.PaymentType;
+import com.czw.pay.type.PlatType;
 
 /**
  * @author 崔志伟 
@@ -31,8 +32,8 @@ import com.czw.pay.type.PaymentType;
 public class JpayOrder extends BaseEntity {
 
 	private static final long serialVersionUID = -8868566083752169571L;
-
-	private int plat;// 平台
+	@Enumerated(EnumType.ORDINAL)
+	private PlatType plat;// 平台
 	private String orderNo;// 订单编号
 	private BigDecimal payment;// 实付金额
 	@Enumerated(EnumType.ORDINAL)
@@ -50,13 +51,13 @@ public class JpayOrder extends BaseEntity {
 	private String buyerMessage;// 买家留言
 	private String buyerNick;// 买家昵称
 	private int buyerRate;// 买家是否评价
-	private String outUserNo;// 外部用户标识
 
-	public int getPlat() {
+	
+	public PlatType getPlat() {
 		return plat;
 	}
 
-	public void setPlat(int plat) {
+	public void setPlat(PlatType plat) {
 		this.plat = plat;
 	}
 
@@ -172,14 +173,6 @@ public class JpayOrder extends BaseEntity {
 
 	public void setBuyerRate(int buyerRate) {
 		this.buyerRate = buyerRate;
-	}
-
-	public String getOutUserNo() {
-		return outUserNo;
-	}
-
-	public void setOutUserNo(String outUserNo) {
-		this.outUserNo = outUserNo;
 	}
 
 }

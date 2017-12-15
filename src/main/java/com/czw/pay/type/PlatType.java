@@ -7,7 +7,8 @@ package com.czw.pay.type;
  */
 public enum PlatType {
 	
-	GYPAY("gypay");
+	GUOYR("国艺网"),
+	EDU("国艺研习所");
 
 	private final String info;
 

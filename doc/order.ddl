@@ -26,9 +26,8 @@ CREATE TABLE jpay_order(
 		user_id                       		BIGINT(20)		 NULL  COMMENT '用户id',
 		buyer_message                 		VARCHAR(200)		 NULL  COMMENT '买家留言',
 		buyer_nick                    		VARCHAR(50)		 NULL  COMMENT '买家昵称',
-		buyer_rate                    		SMALLINT(2)		 NULL  COMMENT '买家是否评价',
-		out_user_no                   		VARCHAR(64)		 NULL  COMMENT '外部用户标识'
-)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8  COMMENT='订单表';
+		buyer_rate                    		SMALLINT(2)		 NULL  COMMENT '买家是否评价'
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='订单表';
 
 /**********************************/
 /* Table Name: 订单详情表 */
@@ -47,7 +46,7 @@ CREATE TABLE jpay_order_item(
 		total_fee                     		DECIMAL(10,2)		 NULL  COMMENT '商品总金额',
 		pic_url                       		VARCHAR(225)		 NULL  COMMENT '商品图片地址',
 		detail                        		VARCHAR(512)		 NULL  COMMENT '商品详情'
-)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8  COMMENT='订单详情表';
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='订单详情表';
 
 /**********************************/
 /* Table Name: 支付流水表 */
@@ -62,10 +61,13 @@ CREATE TABLE jpay_record(
 		total_amount                  		DECIMAL(10,2)		 NULL  COMMENT '支付总金额',
 		trade_no                      		VARCHAR(64)		 NULL  COMMENT '外部交易流水号',
 		user_id                       		BIGINT(20)		 NULL  COMMENT '用户id',
-		out_user_no                   		VARCHAR(64)		 NULL  COMMENT '外部用户标识',
 		payment_channel               		SMALLINT(2)		 NULL  COMMENT '支付渠道平台',
-		plat                          		SMALLINT(3)		 DEFAULT 0		 NULL  COMMENT '平台'
-)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8  COMMENT='支付流水表';
+		plat                          		SMALLINT(3)		 DEFAULT 0		 NULL  COMMENT '平台',
+		alipay_buyer_id               		VARCHAR(64)		 NULL  COMMENT '买家支付宝用户号',
+		alipay_buyer_login            		VARCHAR(100)		 NULL  COMMENT '买家支付宝账号',
+		alipay_seller_id              		VARCHAR(64)		 NULL  COMMENT '卖家支付宝用户号',
+		alipay_seller_login           		VARCHAR(100)		 NULL  COMMENT '卖家支付宝账号'
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='支付流水表';
 
 /**********************************/
 /* Table Name: 用户表 */
@@ -77,7 +79,7 @@ CREATE TABLE jpay_user(
 		status                        		SMALLINT(3)		 NULL  COMMENT '数据状态',
 		nickname                      		VARCHAR(50)		 NULL  COMMENT '用户昵称',
 		sex                           		SMALLINT(2)		 NULL  COMMENT '性别'
-)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8  COMMENT='用户表';
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 /**********************************/
 /* Table Name: 订单配送表 */
@@ -98,7 +100,7 @@ CREATE TABLE jpay_order_shipping(
 		city_code                     		VARCHAR(20)		 NULL  COMMENT '城市代码',
 		address                       		VARCHAR(500)		 NULL  COMMENT '详细地址',
 		postcode                      		VARCHAR(10)		 NULL  COMMENT '邮编'
-)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8  COMMENT='订单配送表';
+)ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='订单配送表';
 
 
 CREATE INDEX IDX_jpay_order_1 ON jpay_order (order_no);
@@ -112,8 +114,7 @@ CREATE INDEX IDX_jpay_order_item_2 ON jpay_order_item (order_no);
 CREATE INDEX IDX_jpay_record_1 ON jpay_record (order_no);
 CREATE INDEX IDX_jpay_record_2 ON jpay_record (item_no);
 CREATE INDEX IDX_jpay_record_3 ON jpay_record (trade_no);
-CREATE INDEX IDX_jpay_record_4 ON jpay_record (user_id);
-CREATE INDEX IDX_jpay_record_5 ON jpay_record (out_user_no);
+CREATE INDEX IDX_jpay_record_4 ON jpay_record (user_id); 
 
 CREATE INDEX IDX_jpay_order_shipping_1 ON jpay_order_shipping (order_id);
 CREATE INDEX IDX_jpay_order_shipping_2 ON jpay_order_shipping (order_no);

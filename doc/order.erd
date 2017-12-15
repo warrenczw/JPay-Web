@@ -293,17 +293,6 @@
           <autoIncrement>false</autoIncrement>
           <defaultValue></defaultValue>
         </net.java.amateras.db.visual.model.ColumnModel>
-        <net.java.amateras.db.visual.model.ColumnModel>
-          <columnName>out_user_no</columnName>
-          <logicalName>外部用户标识</logicalName>
-          <columnType class="net.java.amateras.db.dialect.ColumnType" reference="../../net.java.amateras.db.visual.model.ColumnModel[6]/columnType"/>
-          <size>64</size>
-          <notNull>false</notNull>
-          <primaryKey>false</primaryKey>
-          <description></description>
-          <autoIncrement>false</autoIncrement>
-          <defaultValue></defaultValue>
-        </net.java.amateras.db.visual.model.ColumnModel>
       </columns>
       <indices>
         <net.java.amateras.db.visual.model.IndexModel>
@@ -671,17 +660,6 @@
           <defaultValue></defaultValue>
         </net.java.amateras.db.visual.model.ColumnModel>
         <net.java.amateras.db.visual.model.ColumnModel>
-          <columnName>out_user_no</columnName>
-          <logicalName>外部用户标识</logicalName>
-          <columnType class="net.java.amateras.db.dialect.ColumnType" reference="../../../../net.java.amateras.db.visual.model.TableModel/columns/net.java.amateras.db.visual.model.ColumnModel[6]/columnType"/>
-          <size>64</size>
-          <notNull>false</notNull>
-          <primaryKey>false</primaryKey>
-          <description></description>
-          <autoIncrement>false</autoIncrement>
-          <defaultValue></defaultValue>
-        </net.java.amateras.db.visual.model.ColumnModel>
-        <net.java.amateras.db.visual.model.ColumnModel>
           <columnName>payment_channel</columnName>
           <logicalName>支付渠道平台</logicalName>
           <columnType class="net.java.amateras.db.dialect.ColumnType" reference="../../../../net.java.amateras.db.visual.model.TableModel/columns/net.java.amateras.db.visual.model.ColumnModel[5]/columnType"/>
@@ -702,6 +680,55 @@
           <description>内部子系统交易平台标识</description>
           <autoIncrement>false</autoIncrement>
           <defaultValue>0</defaultValue>
+        </net.java.amateras.db.visual.model.ColumnModel>
+        <net.java.amateras.db.visual.model.ColumnModel>
+          <columnName>alipay_buyer_id</columnName>
+          <logicalName>买家支付宝用户号</logicalName>
+          <columnType class="net.java.amateras.db.dialect.ColumnType">
+            <name>VARCHAR</name>
+            <logicalName>String</logicalName>
+            <supportSize>true</supportSize>
+            <type>12</type>
+          </columnType>
+          <size>64</size>
+          <notNull>false</notNull>
+          <primaryKey>false</primaryKey>
+          <description></description>
+          <autoIncrement>false</autoIncrement>
+          <defaultValue></defaultValue>
+        </net.java.amateras.db.visual.model.ColumnModel>
+        <net.java.amateras.db.visual.model.ColumnModel>
+          <columnName>alipay_buyer_login</columnName>
+          <logicalName>买家支付宝账号</logicalName>
+          <columnType class="net.java.amateras.db.dialect.ColumnType" reference="../../net.java.amateras.db.visual.model.ColumnModel[12]/columnType"/>
+          <size>100</size>
+          <notNull>false</notNull>
+          <primaryKey>false</primaryKey>
+          <description></description>
+          <autoIncrement>false</autoIncrement>
+          <defaultValue></defaultValue>
+        </net.java.amateras.db.visual.model.ColumnModel>
+        <net.java.amateras.db.visual.model.ColumnModel>
+          <columnName>alipay_seller_id</columnName>
+          <logicalName>卖家支付宝用户号</logicalName>
+          <columnType class="net.java.amateras.db.dialect.ColumnType" reference="../../net.java.amateras.db.visual.model.ColumnModel[12]/columnType"/>
+          <size>64</size>
+          <notNull>false</notNull>
+          <primaryKey>false</primaryKey>
+          <description></description>
+          <autoIncrement>false</autoIncrement>
+          <defaultValue></defaultValue>
+        </net.java.amateras.db.visual.model.ColumnModel>
+        <net.java.amateras.db.visual.model.ColumnModel>
+          <columnName>alipay_seller_login</columnName>
+          <logicalName>卖家支付宝账号</logicalName>
+          <columnType class="net.java.amateras.db.dialect.ColumnType" reference="../../net.java.amateras.db.visual.model.ColumnModel[12]/columnType"/>
+          <size>100</size>
+          <notNull>false</notNull>
+          <primaryKey>false</primaryKey>
+          <description></description>
+          <autoIncrement>false</autoIncrement>
+          <defaultValue></defaultValue>
         </net.java.amateras.db.visual.model.ColumnModel>
       </columns>
       <indices>
@@ -731,13 +758,6 @@
           <indexType class="net.java.amateras.db.dialect.IndexType" reference="../../../../net.java.amateras.db.visual.model.TableModel[2]/indices/net.java.amateras.db.visual.model.IndexModel/indexType"/>
           <columns>
             <string>user_id</string>
-          </columns>
-        </net.java.amateras.db.visual.model.IndexModel>
-        <net.java.amateras.db.visual.model.IndexModel>
-          <indexName>IDX_jpay_record_5</indexName>
-          <indexType class="net.java.amateras.db.dialect.IndexType" reference="../../../../net.java.amateras.db.visual.model.TableModel[2]/indices/net.java.amateras.db.visual.model.IndexModel/indexType"/>
-          <columns>
-            <string>out_user_no</string>
           </columns>
         </net.java.amateras.db.visual.model.IndexModel>
       </indices>
@@ -852,8 +872,8 @@
       <constraint>
         <height>-1</height>
         <width>-1</width>
-        <x>588</x>
-        <y>313</y>
+        <x>593</x>
+        <y>350</y>
       </constraint>
       <sourceConnections/>
       <targetConnections/>

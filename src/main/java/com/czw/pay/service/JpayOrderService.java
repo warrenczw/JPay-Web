@@ -11,7 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.czw.common.dao.BaseDao;
 import com.czw.common.service.BaseService;
+import com.czw.common.type.StatusType;
 import com.czw.pay.entity.JpayOrder;
+import com.czw.pay.type.PayStatusType;
 
 /**
  * @author 崔志伟
@@ -34,12 +36,39 @@ public class JpayOrderService extends BaseService<JpayOrder>{
 	 * @param orderNo
 	 * @return
 	 */
-	public List<JpayOrder> findByOrderNo(String orderNo){
+	public JpayOrder findByOrderNo(String orderNo){
 		String hql="from JpayOrder where orderNo=:orderNo and status=:status";
 		Map<String,Object> values=new HashMap<String,Object>();
 		values.put("orderNo", orderNo);
-		values.put("status", "0");
-		return this.findList(hql, values);
+		values.put("status", StatusType.VALID);
+		List<JpayOrder> orderList = findList(hql, values);
+		if(orderList!=null && orderList.size()>0){
+			return orderList.get(0);
+		}else{
+			return null;
+		}
 	}
+	
+	/**
+	 * 订单是否支付成功
+	 * @param orderNo
+	 * @return
+	 */
+	public Boolean isPaid(String orderNo){
+		String hql="from JpayOrder where orderNo=:orderNo and status=:status";
+		Map<String,Object> values=new HashMap<String,Object>();
+		values.put("orderNo", orderNo);
+		values.put("status", StatusType.VALID);
+		List<JpayOrder> list = this.findList(hql, values);
+		boolean result = false;
+		if(list!=null && list.size()>0){
+			JpayOrder jo= list.get(0);
+			if(jo.getPayStatus() == PayStatusType.HASPAY){
+				result = true;
+			}
+		}
+		return result;
+	}
+
 
 }

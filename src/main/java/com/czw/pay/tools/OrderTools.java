@@ -15,7 +15,7 @@ public class OrderTools {
 
 	public static String createOrderNo(PlatType plat,Long uid){
 		
-		if(plat==null) plat = PlatType.GYPAY;
+		if(plat==null) plat = PlatType.GUOYR;
 		StringBuffer no = new StringBuffer();
 		no.append(Tools.toString(plat.ordinal()+1));
 		long nt = new Date().getTime();

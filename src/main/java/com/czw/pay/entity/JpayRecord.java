@@ -34,11 +34,14 @@ public class JpayRecord extends BaseEntity {
 	private BigDecimal totalAmount;// 支付总金额
 	private String tradeNo;// 外部交易流水号
 	private Long userId;// 用户id
-	private String outUserNo;// 外部用户标识
 	@Enumerated(EnumType.ORDINAL)
 	private PaymentChannelType paymentChannel;// 支付渠道平台
 	@Enumerated(EnumType.ORDINAL)
 	private PlatType plat;// 平台
+	private String alipayBuyerId;
+	private String alipayBuyerLogin;
+	private String alipaySellerId;
+	private String alipaySellerLogin;
 
 	public String getOrderNo() {
 		return orderNo;
@@ -80,14 +83,6 @@ public class JpayRecord extends BaseEntity {
 		this.userId = userId;
 	}
 
-	public String getOutUserNo() {
-		return outUserNo;
-	}
-
-	public void setOutUserNo(String outUserNo) {
-		this.outUserNo = outUserNo;
-	}
-
 	public PaymentChannelType getPaymentChannel() {
 		return paymentChannel;
 	}
@@ -102,6 +97,38 @@ public class JpayRecord extends BaseEntity {
 
 	public void setPlat(PlatType plat) {
 		this.plat = plat;
+	}
+
+	public String getAlipayBuyerId() {
+		return alipayBuyerId;
+	}
+
+	public void setAlipayBuyerId(String alipayBuyerId) {
+		this.alipayBuyerId = alipayBuyerId;
+	}
+
+	public String getAlipayBuyerLogin() {
+		return alipayBuyerLogin;
+	}
+
+	public void setAlipayBuyerLogin(String alipayBuyerLogin) {
+		this.alipayBuyerLogin = alipayBuyerLogin;
+	}
+
+	public String getAlipaySellerId() {
+		return alipaySellerId;
+	}
+
+	public void setAlipaySellerId(String alipaySellerId) {
+		this.alipaySellerId = alipaySellerId;
+	}
+
+	public String getAlipaySellerLogin() {
+		return alipaySellerLogin;
+	}
+
+	public void setAlipaySellerLogin(String alipaySellerLogin) {
+		this.alipaySellerLogin = alipaySellerLogin;
 	}
 
 }

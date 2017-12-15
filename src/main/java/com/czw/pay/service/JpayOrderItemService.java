@@ -24,5 +24,7 @@ public class JpayOrderItemService extends BaseService<JpayOrderItem> {
 	public void setBaseDao(BaseDao<JpayOrderItem> baseDao) {
 		this.baseDao = baseDao;
 	}
+	
+	
 
 }
